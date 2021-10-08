@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link href="{{asset("styles/insertion.css")}}" rel="stylesheet" /> {% endblock %}
+{% block body %}
+
+
+
+<div class="containerx">
+    <form method="POST" id="form11" class="text-uppercase">
+
+
+
+
+        <label>Email :<br />
+            <input required  type="email" class="input" name="email" /> </label><br />
+        <label>Password :<br />
+            <input  required type="password" class="input" id="password" name="password" /> </label><br />
+        <label>Confirm Password :<br />
+            <input  required type="password" class="input" id="password1" name="password1" /> </label><br />
+
+
+
+        <div class="footer">
+            <button type="button" onclick="inscrit()" id="submit" class="text-uppercase button">Submit</button>
+
+            <button type="reset"  id="reset" class="text-uppercase button left">Reset</button>
+        </div>
+        {% if test %}
+        <div class="erreur">Cet email existe déjà..</div>
+        {% endif %}
+
+        <br />
+    </form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="{{asset("scripts/inscrit.js")}}">
+
+
+
+</script>
+
+
+{% endblock %}

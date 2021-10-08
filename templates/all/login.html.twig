@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link href="{{asset("styles/insertion.css") }}" rel="stylesheet" /> {% endblock %}
+{% block body %}
+
+
+
+<div class="containerx">
+    <form method="POST" class="text-uppercase">
+
+        <label>Email :<br />
+            <input required type="email" class="input" name="email" /> </label><br />
+        <label>Password :<br />
+            <input required type="password" class="input" name="password" /> </label><br />
+
+
+
+        <div class="footer">
+            <button type="submit" class="text-uppercase button">Submit</button>
+
+            <button type="reset" class="text-uppercase button left">Reset</button>
+        </div>
+        <br>
+        {% if test %}
+        <div class="erreur">Email ou mot de passe incorrect. </div>
+        {% endif %}
+        <br />
+    </form>
+</div>
+
+
+
+{% endblock %}

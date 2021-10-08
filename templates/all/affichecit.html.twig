@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %} {% block stylesheets %} <link href="{{
+  asset("styles/index1.css")
+}}" rel="stylesheet"/> <link href="{{ asset("styles/index2.css") }}"
+rel="stylesheet"/> {% endblock %} {% block body %}
+
+{% if bool %}
+{% for auteur in auteurs %}
+
+
+
+<div class="talk-bubble tri-right round right-in">
+  <div class="talktext">
+    <span class="quotes">&#8220;</span>
+
+    <p>{{auteur.citation}} .</p>
+
+    <span class="quotes">&#8221;</span>
+
+    <span class="auteur"><sub> {{auteur.nom}}{{ auteur.prenom}} - </sub> </span>
+    <span class="siecle">
+      <sub>{{auteur.siecle}} </sub>
+    </span>
+  </div>
+</div>
+{% endfor %}
+
+
+{% else %}
+<div class="img"></div>
+{% endif %}
+
+
+
+{% endblock %}

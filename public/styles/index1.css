@@ -1,0 +1,166 @@
+.talk-bubble {
+  margin: 20px 40px;
+  display: inline-block;
+  position: relative;
+  width: 800px;
+  height: auto;
+  min-height: 100px;
+  background-color: white;
+}
+
+.round {
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+}
+
+.tri-right.right-in:after {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: auto;
+  right: -20px;
+  top: 38px;
+  bottom: auto;
+  border: 12px solid;
+  border-color: white transparent transparent white;
+}
+
+.talktext {
+  padding: 1em;
+  text-align: left;
+  line-height: 1.5em;
+  font-weight: 500;
+  font-family: Tahoma, sans-serif;
+}
+
+#afficher {
+  display: none;
+}
+
+.talktext p {
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  display: inline;
+  font-family: Georgia, serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  word-spacing: 1px;
+  color: #000000;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+}
+
+.auteur,
+.siecle {
+  font-weight: 700;
+  color: black;
+  font-size: large;
+  margin-top: 40px;
+}
+
+.quotes {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.search {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: auto;
+  padding-left: 40px;
+}
+
+.search .sug {
+  border: 1px solid grey;
+  border-top: 0px;
+  width: 360px;
+  border-radius: 8px 8px 8px 8px;
+  max-height: 300px;
+  padding: 10px 5px;
+  overflow-y: auto;
+  display: none;
+}
+
+.search .sug2 {
+  cursor: pointer;
+  z-index: 10000;
+  max-width: auto;
+  height: 26px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.search #siecle,
+.search #auteur,
+.search #none {
+  width: 40px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.search #input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.search #input #input-search {
+  margin-right: 20px;
+  border-radius: 0px;
+  width: 360px;
+  border-radius: 0 8px 8px 0;
+  outline: none;
+  height: 40px;
+}
+
+.search #input #input-search::-webkit-input-placeholder {
+  color: black;
+  font-weight: 700;
+}
+
+.search #input #input-search:-ms-input-placeholder {
+  color: white;
+  font-weight: 700;
+}
+
+.search #input #input-search::-ms-input-placeholder {
+  color: black;
+  font-weight: 700;
+}
+
+.search #input #input-search::placeholder {
+  color: black;
+  font-weight: 700;
+}
+
+.search #input #search-button {
+  background-image: url("../images/search.jpg");
+  width: 40px;
+  height: 40px;
+  background: url("../images/search.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  border-right: none;
+  outline: none;
+  border-radius: 8px 0px 0px 8px;
+}
+
+img{
+  padding: 3px;
+  margin-right: 10px;
+}
+
+.search #input #search-button:active {
+  border: none;
+}
+/*# sourceMappingURL=index1.css.map */

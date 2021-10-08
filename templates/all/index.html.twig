@@ -1,0 +1,215 @@
+{% extends 'base.html.twig' %} {% block stylesheets %} <link href="{{
+  asset("styles/index1.css")
+}}" rel="stylesheet"/> {% endblock %} {% block body %}
+
+<center>
+<div class="search">
+  <br>
+  <form id="searchbox " method="POST" action="/afficher " autocomplete="off ">
+    <div id="input">
+      <input type="submit" id="search-button" value="" />
+      <div>
+        <input
+          name="search"
+          type="text"
+          id="input-search"
+          placeholder="Chercher une citation"
+          autocomplete="off"
+          value=""
+        />
+        <div id="sug" class="sug"></div>
+      </div>
+
+      <div class="right">
+        <input
+          type="radio"
+          name="select"
+          onclick="searchFunction()"
+          value="0"
+          id="one"
+          checked="checked"
+        />
+        <img src="{{ asset('images/none.png') }}" alt="" id="none" />
+
+        <input
+          type="radio"
+          name="select"
+          onclick="searchFunction()"
+          value="1"
+          id="two"
+        />
+        <img id="siecle" src="{{ asset('images/siecle.png') }}" alt="" />
+        <input
+          type="radio"
+          name="select"
+          value="2"
+          onclick="searchFunction()"
+          id="three"
+        />
+        <img src="{{ asset('images/auteur.png') }}" alt="" id="auteur" />
+      </div>
+    </div>
+  </form>
+</div>
+</center>
+<br><br>
+<center>
+{% for auteur in auteurs%}
+<div class="talk-bubble tri-right round right-in">
+  <div class="talktext">
+    <span class="quotes">&#8220;</span>
+
+    <p>{{ auteur.citation }}.</p>
+
+    <span class="quotes">&#8221;</span>
+
+    <span class="auteur"
+      ><sub>{{ auteur.nom }} {{ auteur.prenom }} - </sub>
+    </span>
+    <span class="siecle">
+      <sub>{{ auteur.siecle }}</sub>
+    </span>
+  </div>
+</div>
+
+{% endfor %}
+</center>
+<form action="/afficher" id="afficher" method="POST">
+  <input type="text" name="radioSelected" />
+  <input type="text" name="textSelected" />
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js
+
+
+
+"></script>
+
+<script src="{{ asset('scripts/index.js') }}"></script>
+<script>
+  var none = document.getElementById("none");
+  var siecle = document.getElementById("siecle");
+  var auteur = document.getElementById("auteur");
+  var one = document.getElementById("one");
+  var two = document.getElementById("two");
+  var three = document.getElementById("three");
+  var search = document.getElementById("input-search");
+
+  $(".sug").on("click", function (e) {
+    if (e.target != this) {
+      if (e.target.id != "") {
+        var radio = document.querySelector("input[name=select]:checked");
+        var radioSelected = (document.querySelector(
+          "input[name=radioSelected]"
+        ).value = radio.value);
+        var textSelected = document.querySelector("input[name=textSelected]");
+        textSelected.value = e.target.innerText;
+        document.getElementById("afficher").submit();
+      }
+    }
+  });
+
+  none.onclick = () => {
+    one.click();
+    search.placeholder = "Recherche par Citation...";
+  };
+  siecle.onclick = () => {
+    two.click();
+    search.placeholder = "Recherche par Siècle : du XVIe au XXIe ...";
+  };
+  auteur.onclick = () => {
+    three.click();
+    search.placeholder = "Recherche par Auteur...";
+  };
+  function searchFunction() {
+    var search = document.getElementById("input-search");
+
+    var radio = document.querySelector("input[name=select]:checked");
+    console.log(radio.value);
+    var data = {
+      searchValue: search.value,
+      radioValue: radio.value,
+    };
+    if (search.value != "") {
+      document.getElementById("sug").style.display = "block";
+    } else {
+      document.getElementById("sug").style.display = "none";
+    }
+    $.ajax({
+      url: "{{ path('home') }}",
+      type: "GET",
+      dataType: "json",
+      async: true,
+      data: data,
+
+      success: function (data, status) {
+        $(".sug2").remove();
+        if (data.length != 0) {
+          var i = 0;
+          data.forEach((element) => {
+            var newDiv = document.createElement("div");
+            newDiv.classList.add("sug2");
+            var div = document.getElementById("sug");
+            newDiv.innerText = element.name;
+            newDiv.id = "sugg" + i;
+
+            div.appendChild(newDiv);
+            i++;
+          });
+        } else {
+          var newDiv = document.createElement("div");
+          newDiv.classList.add("sug2");
+          var div = document.getElementById("sug");
+          newDiv.innerText = "NOT FOUND....";
+          div.appendChild(newDiv);
+        }
+      },
+    });
+  }
+
+  search.addEventListener("input", () => {
+    var radio = document.querySelector("input[name=select]:checked");
+    var data = {
+      searchValue: search.value,
+      radioValue: radio.value,
+    };
+    if (search.value != "") {
+      document.getElementById("sug").style.display = "block";
+    } else {
+      document.getElementById("sug").style.display = "none";
+    }
+    $.ajax({
+      url: "{{ path('home') }}",
+      type: "POST",
+      dataType: "json",
+      async: true,
+      data: data,
+
+      success: function (data, status) {
+        $(".sug2").remove();
+        $(".ttest").remove();
+        if (data.length != 0) {
+          var i = 0;
+          data.forEach((element) => {
+            var newDiv = document.createElement("div");
+            newDiv.classList.add("sug2");
+            var div = document.getElementById("sug");
+            newDiv.innerText = element.name;
+            newDiv.id = "sugg" + i;
+
+            div.appendChild(newDiv);
+            i++;
+          });
+        } else {
+          var newDiv = document.createElement("div");
+          newDiv.classList.add("sug2");
+          var div = document.getElementById("sug");
+          newDiv.innerText = "NOT FOUND....";
+          div.appendChild(newDiv);
+        }
+      },
+    });
+  });
+</script>
+<script></script>
+
+{% endblock %}

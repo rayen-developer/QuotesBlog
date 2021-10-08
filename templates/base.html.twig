@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}Welcome!{% endblock %}</title>
+  <link rel="stylesheet" href="{{
+      asset("styles/index.css") }}"> {% block stylesheets %}{% endblock %} {% block javascripts %}{%
+  endblock %}
+</head>
+
+<body>
+  <div class="container">
+    <div class="log">
+
+      <a href="/home">
+        <img src="{{ asset("images/logo1.png") }}" alt="">
+    </div></a>
+
+
+    <div class="liens">
+      <div><a href="/home">Acceuil</a></div>
+      {% if logout==false %}
+      <div><a href="/insertion">Nouvelle citation</a></div>
+      {% endif %}
+
+      {% if logout %}
+
+      <div><a href="/login">Se connecter</a></div>
+
+      {% endif %}
+      {% if logout %}
+
+      <div><a href="/inscription">S'inscrire</a></div>
+
+      {% endif %}
+
+    
+      {% if logout==false %}
+
+      <div id="logout"><a  href="/logout">logout</a></div>
+    
+      {% endif %}
+
+    </div>
+  </div>
+  <script>
+
+  
+  </script>
+  {% block body %} {% endblock %}
+</body>
+
+</html>
